@@ -88,13 +88,18 @@ final class HtmlEscapeUtil {
     }
 
 
-
-
-
     /*
      * Perform an escape operation, based on String, according to the specified level and type.
      */
     static String escape(final String text, final HtmlEscapeType escapeType, final HtmlEscapeLevel escapeLevel) {
+    	return HtmlEscapeUtil.escape(text, escapeType, escapeLevel, false);
+    }
+
+
+    /*
+     * Perform an escape operation, based on String, according to the specified level, type and if HTML tags is safe.
+     */
+    static String escape(final String text, final HtmlEscapeType escapeType, final HtmlEscapeLevel escapeLevel, final boolean safeHtmlTags) {
 
         if (text == null) {
             return null;
@@ -119,6 +124,9 @@ final class HtmlEscapeUtil {
 
             final char c = text.charAt(i);
 
+            if ( safeHtmlTags && (c == '<' || c == '>') )	{
+            	continue;
+            }
 
             /*
              * Shortcut: most characters will be ASCII/Alphanumeric, and we won't need to do anything at

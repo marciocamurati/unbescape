@@ -358,10 +358,19 @@ public final class HtmlEscape {
     }
 
 
+    public static String escapeHtml(final String text, final HtmlEscapeType type, final HtmlEscapeLevel level, final boolean safeHtmlTags) {
 
+        if (type == null) {
+            throw new IllegalArgumentException("The 'type' argument cannot be null");
+        }
 
+        if (level == null) {
+            throw new IllegalArgumentException("The 'level' argument cannot be null");
+        }
 
+        return HtmlEscapeUtil.escape(text, type, level, safeHtmlTags);
 
+    }
 
     /**
      * <p>
