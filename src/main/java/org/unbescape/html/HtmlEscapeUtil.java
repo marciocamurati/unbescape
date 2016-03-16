@@ -124,7 +124,7 @@ final class HtmlEscapeUtil {
 
             final char c = text.charAt(i);
 
-            if ( safeHtmlTags && (c == '<' || c == '>') )	{
+            if ( safeHtmlTags && (c == '<' || c == '>' || c == '"' || c == '\'' || c == '&') )	{
             	continue;
             }
 
